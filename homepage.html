@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+    
+            100% {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    
+        .animate-fadeInDown {
+            animation-name: fadeInDown;
+            animation-duration: 1s;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 py-20">
+    <div class="flex justify-center">
+        <form class="w-full max-w-sm shadow-lg p-5 rounded-lg bg-white opacity-90 animate-fadeInDown" method="post" action="http://localhost:3000/extract" enctype="multipart/form-data">
+            <h2 class="text-center text-2xl font-bold mb-5 text-teal-500">Upload Image to Process</h2>
+            <div class="flex items-center border-b border-teal-500 py-2">
+                <input name="img" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="file" accept="image/*" placeholder="Choose an image" id="img" />
+                <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-dark py-1 px-2 rounded transform hover:scale-110 motion-reduce:transform-none" type="submit">
+                    Extract Text
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        form.classList.add('animate-bounce');
+        setTimeout(() => form.classList.remove('animate-bounce'), 1000);
+    </script>
+</body>
+
+
+</html>
