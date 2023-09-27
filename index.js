@@ -91,6 +91,7 @@ app.post("/extract", (req, res) => {
       }
     }
   });
+  console.log(response)
 });
 
 app.listen(port, () => {
