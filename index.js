@@ -1,9 +1,16 @@
 import { createWorker } from "tesseract.js";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { promises as fs } from "fs";
+import express from "express";
+import path from "path";
+const app = express();
+const port = 3000;
+import multer from "multer";
 
 async function proccessImg(imgName) {
   let txt;
+  const __dirname = process.cwd();
+  const img = path.join(__dirname, "/images/" + imgName);
   const worker = await createWorker({
     logger: (m) => console.log(m),
   });
@@ -49,12 +56,6 @@ async function proccessImg(imgName) {
   return txt;
 }
 
-import express from "express";
-import path from "path";
-const app = express();
-const port = 3000;
-import multer from "multer";
-
 // Set storage engine
 const storage = multer.diskStorage({
   destination: "./images/",
@@ -91,7 +92,6 @@ app.post("/extract", (req, res) => {
       }
     }
   });
-  console.log(response)
 });
 
 app.listen(port, () => {
